@@ -57,26 +57,36 @@ public class PhoneController {
 		return "/WEB-INF/views/list.jsp";
 	}
 	
-	@RequestMapping(value="/updateForm",method= {RequestMethod.GET,RequestMethod.POST})
-	public String update(@RequestParam("no") String no,
-					     @ModelAttribute PersonVo personVo) {
+	@RequestMapping(value="/update",method= {RequestMethod.GET,RequestMethod.POST})
+	public String update(@ModelAttribute PersonVo personVo) {
 		System.out.println("update");
 	
 		PhoneDao phoneDao=new PhoneDao();
 		phoneDao.personUpdate(personVo);
+		System.out.println(personVo);
 		
-		
+		return "redirect:/phone/list";
+	}
+	
+	@RequestMapping(value="/updateForm",method= {RequestMethod.GET,RequestMethod.POST})
+	public String updateForm(@ModelAttribute("personId")int peorsnId, Model model) {
+		System.out.println("updateForm");
+
+		PersonVo personVo = new PhoneDao().getPerson(peorsnId);
+
+		model.addAttribute("personVo", personVo);
+
 		return "/WEB-INF/views/updateForm.jsp";
 	}
+	
 	@RequestMapping (value="/delete",method= {RequestMethod.GET,RequestMethod.POST})
-	public String delete(@RequestParam("person_id") int personId,
-						 @ModelAttribute PersonVo personVo) {
+	public String delete(@RequestParam("person_id") int personId) {
 		System.out.println("delete");
 		PhoneDao phoneDao= new PhoneDao();
 		phoneDao.personDelete(personId);
+		System.out.println(personId);
 		
-		
-		return "/WEB-INF/views/list.jsp";
+		return "redirect:/phone/list";
 	}
 	
 }

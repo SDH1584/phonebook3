@@ -28,7 +28,7 @@
 				<td>${personVo.company}</td>
 			</tr>
 			<tr>
-				<td><a href="/phonebook3/phone?action=updateForm&id=${personVo.personId}">수정</a></td> <!--id=${personVo.personId} 연결할때 띄워쓰기 금지 -->
+				<td><a href="/phonebook3/phone?action=updateForm&id=${personVo.personId}">수정</a></td>
 				
 				<td><a href="/phonebook3/phone?action=delete&id=${personVo.personId}">삭제</a></td>
 			</tr>
@@ -36,6 +36,6 @@
 			<br>		
 		</c:forEach>
 	
-			<a href="/phonebook2/pbc?action=writeForm">추가번호 등록</a>
+			<a href="/phonebook3/phone?action=writeForm">추가번호 등록</a>
 	</body>
 </html>
